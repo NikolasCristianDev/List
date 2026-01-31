@@ -1,0 +1,230 @@
+
+body {
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* Container Principal */
+.box {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    background: #1c1c1c;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Área de Input e Botão Adicionar */
+.pesquisa {
+    display: flex;
+    gap: 10px; /* Espaço entre input e botão */
+    margin-bottom: 30px;
+
+    input {
+        flex: 1; /* Faz o input ocupar o espaço restante */
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid #0e0e0e;
+        outline: none;
+        font-size: 1rem;
+        background: #0e0e0e;
+        color: #fff;
+        transition: border-color 0.3s;
+    }
+
+    input:focus {
+        border-color: #3c3a3a;
+    }
+
+    button {
+        width: 55px;
+        height: 55px;
+        border-radius: 12px;
+        border: none;
+        background: #0e0e0e;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    button:hover {
+        background: #252525;
+        transform: scale(1.05);
+    }
+}
+
+/* Lista de Tarefas */
+#listaTarefas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        padding: 15px 20px;
+        background: #0e0e0e;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+        transition: transform 0.2s;
+    }
+
+    li:hover {
+        background: #141414;
+    }
+
+    .btnAcao {
+        border-radius: 10px;
+        border: none;
+        width: 35px;
+        height: 35px;
+        margin-left: 8px;
+        cursor: pointer;
+        background: #1c1c1c;
+        color: #fff;
+        transition: all 0.3s;
+    }
+
+    .btnAcao:hover {
+        background: #3c3a3a;
+        color: #00ff88; /* Destaque verde no hover */
+    }
+
+    /* Botão específico de lixeira pode ser vermelho no hover */
+    .btnAcao:nth-child(2):hover {
+        color: #ff4d4d;
+    }
+}
+
+/* Modal de Edição (Fundo) */
+#janelaEditFundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 100;
+    display: none;
+    backdrop-filter: blur(4px); /* Efeito de desfoque no fundo */
+}
+
+/* Janela do Modal */
+#janelaEdit {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background: #191818;
+    border: 1px solid #2f2e2e;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 16px;
+    z-index: 200;
+    display: none;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+
+    #janelaEditFechar {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: #ff4d4d;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+}
+
+/* Classes para Abrir Modal */
+#janelaEditFundo.abrir, #janelaEdit.abrir {
+    display: block !important;
+}
+
+/* Formulário de Edição */
+.frm-linha {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Reduzi levemente para aproximar o rótulo do campo */
+
+    label {
+        font-size: 0.9rem; /* Labels menores e em uppercase dão um ar mais profissional */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #aaaaaa;
+        font-weight: 600;
+    }
+
+    textarea {
+        padding: 15px;
+        border-radius: 12px;
+        border: 2px solid #2d2c2c; /* Borda um pouco mais grossa para o foco ficar melhor */
+        background: #0e0e0e;
+        color: white;
+        font-size: 1rem;
+        outline: none;
+        min-height: 100px; /* Garante um espaço bom para digitar */
+        resize: vertical;  /* Impede que o usuário "estrague" a largura do modal */
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+
+    /* Efeito de foco mais vivo */
+    textarea:focus {
+        border-color: #00ff88;
+        background: #141414;
+        box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
+    }
+
+    button {
+        margin-top: 10px;
+        background: #00ff88;
+        border: none;
+        padding: 16px;
+        color: #000;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1);
+    }
+
+    button:hover {
+        background: #00db77;
+        transform: translateY(-2px); /* Efeito de levante ao passar o mouse */
+        box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+    }
+
+    button:active {
+        transform: translateY(0); /* "Afunda" o botão ao clicar */
+    }
+}
+/* Tratamento de Texto Longo */
+.textoTarefa {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 15px;
+}
